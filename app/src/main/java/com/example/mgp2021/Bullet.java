@@ -4,23 +4,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
-import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.SurfaceView;
 
-
-public class Bullet implements EntityBase{
+public class Bullet implements EntityBase {
     private boolean isDone = false;
-    private Bitmap bullet = null, scaledbmp = null;
-
-    int ScreenWidth, ScreenHeight;
-
-    public float xPos = 0;
-    public float yPos = 0;
-
-    private float yLimit, xStart = 0;
-
-    Matrix tfx = new Matrix();
-    DisplayMetrics metrics;
+    private Bitmap bullet = null;
+    private float xPos, yPos;
+    private SurfaceView view = null;
+    //public final static Bullet Instance = new Bullet();
 
     //check if anything to do with entity (use for pause)
     @Override
@@ -35,21 +27,22 @@ public class Bullet implements EntityBase{
 
     @Override
     public void Init(SurfaceView _view) {
-        bullet = BitmapFactory.decodeResource(_view.getResources(), R.drawable.bullet);
-
         //setting up values
-        //xStart = xPos = ;
-        yPos = _view.getHeight() * 0.8f;
+        xPos = DraggablePlayer.Instance.xPos;
+        yPos = DraggablePlayer.Instance.yPos;
+        //yLimit = _view.getHeight() * 0.5f;
+        bullet = BitmapFactory.decodeResource(_view.getResources(), R.drawable.bullet);
+        //System.out.print("drawable bullet: " + R.drawable.bullet);
     }
-
 
     @Override
     public void Update(float _dt) {
-        float imgRadius = bullet.getHeight() * 0.5f;
+        yPos -= _dt * 300.f;
     }
 
     @Override
     public void Render(Canvas _canvas) {
+        //_canvas.drawBitmap(scaledbmp, xPos, yPos, null); //1st image
         Matrix transform = new Matrix();
         transform.postTranslate(-bullet.getWidth()*0.5f, -bullet.getHeight()*0.5f);
         transform.postTranslate(xPos, yPos);
@@ -63,7 +56,7 @@ public class Bullet implements EntityBase{
 
     @Override
     public int GetRenderLayer() {
-        return LayerConstants.BACKGROUND_LAYER;
+        return LayerConstants.BULLET_LAYER;
     }
 
     @Override
@@ -72,12 +65,12 @@ public class Bullet implements EntityBase{
 
     @Override
     public ENTITY_TYPE GetEntityType() {
-        return ENTITY_TYPE.ENT_DEFAULT;
+        return ENTITY_TYPE.ENT_BULLET;
     }
 
     public static Bullet Create() {
         Bullet result = new Bullet();
-        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_DEFAULT);
+        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_BULLET);
         return result;
     }
 }

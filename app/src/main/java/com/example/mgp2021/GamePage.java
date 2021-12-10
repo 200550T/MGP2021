@@ -38,5 +38,9 @@ public class GamePage extends Activity {
         return true;
     }
 
+    public void CreateBullet()
+    {
+        Bullet.Create();
+    }
 }
 

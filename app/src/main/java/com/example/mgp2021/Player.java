@@ -49,12 +49,12 @@ public class Player implements EntityBase{
     @Override
     public void Update(float _dt) {
         if (TouchManager.Instance.IsDown() && (TouchManager.Instance.GetPosX() > xStart)){
-            if(xPos <= xLimitRight)
-                xPos += _dt * 110.f;
+
+                xPos += _dt * 300.f;
         }
         else if (TouchManager.Instance.IsDown() && (TouchManager.Instance.GetPosX() < xStart)){
-            if(xPos >= xLimitLeft)
-                xPos -= _dt * 110.f;
+
+                xPos -= _dt * 300.f;
         }
     }
 

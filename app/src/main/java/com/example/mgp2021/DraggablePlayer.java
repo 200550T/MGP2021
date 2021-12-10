@@ -6,8 +6,10 @@ import android.view.SurfaceView;
 import java.util.Random;
 public class DraggablePlayer implements EntityBase{
     private boolean isDone = false;
-    private float xPos, yPos, offset;
+    public float xPos, yPos, offset;
     private Sprite playerSprite = null;   // New on Week 8
+    public static DraggablePlayer Instance = null;
+    private float ShootTimer = 0.0f;
 
     Random ranGen = new Random(); //wk 8=>Random Generator
 
@@ -28,26 +30,25 @@ public class DraggablePlayer implements EntityBase{
         //week 8=>randomise position
         xPos = _view.getWidth() * 0.5f;
         yPos = _view.getHeight() * 0.85f;
+        Instance = this;
     }
 
     @Override
     public void Update(float _dt) {
+
         // wk8=> update sprite animation frame based on timing
         playerSprite.Update(_dt);
-
         //wk8=>Dragging code --
         if (TouchManager.Instance.HasTouch())  // Touch and drag
         {
-            // Check collision with the smurf sprite
+            // Check collision with the player
             float imgRadius1 = playerSprite.GetWidth() * 0.5f;
-            //Log.v("imgrad","s"+imgRadius1);
             if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius1) )
             {
                 xPos = TouchManager.Instance.GetPosX();
                 //yPos = TouchManager.Instance.GetPosY();
             }
         }
-        //Wk8=>End Dragging Code
     }
 
     @Override

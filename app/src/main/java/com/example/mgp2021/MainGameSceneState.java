@@ -10,6 +10,7 @@ import android.view.SurfaceView;
 
 public class MainGameSceneState implements StateBase {
     private float timer = 0.0f;
+    private GamePage activity = null;
 
     @Override
     public String GetName() {
@@ -22,7 +23,7 @@ public class MainGameSceneState implements StateBase {
         RenderBackground.Create();
         RenderTextEntity.Create();
         DraggablePlayer.Create();
-
+        Bullet.Create();
         PauseButtonEntity.Create();
         // Example to include another Renderview for Pause Button
     }
@@ -37,7 +38,6 @@ public class MainGameSceneState implements StateBase {
     public void Render(Canvas _canvas)
     {
         EntityManager.Instance.Render(_canvas);
-
     }
 
     @Override
@@ -45,15 +45,12 @@ public class MainGameSceneState implements StateBase {
 
         EntityManager.Instance.Update(_dt);
 
-       if (TouchManager.Instance.IsDown())
-               //&& TouchManager.Instance.GetPosX() >= 0
-               //&& TouchManager.Instance.GetPosX() <= 50
-               //&& TouchManager.Instance.GetPosY() >= 0
-               //&& TouchManager.Instance.GetPosY() <= 50)
-           {
-            //Example of touch on screen in the main game to trigger back to Main menu
-            // StateManager.Instance.ChangeState("Mainmenu"); /// Need to comment off cos we not going to touch screen to go else where!!!
-       }
+       //if (TouchManager.Instance.IsDown())
+       //{
+            //DraggablePlayer.Create();
+           //this.activity.CreateBullet();
+           //Bullet.Create();
+       //}
     }
 }
 

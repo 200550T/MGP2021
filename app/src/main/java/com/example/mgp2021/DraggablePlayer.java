@@ -4,7 +4,7 @@ import android.util.Log;
 import android.view.SurfaceView;
 
 import java.util.Random;
-public class DraggablePlayer implements EntityBase{
+public class DraggablePlayer implements EntityBase, Collidable{
     private boolean isDone = false;
     private float xPos, yPos = 0.0f;
     private Sprite playerSprite = null;
@@ -13,18 +13,33 @@ public class DraggablePlayer implements EntityBase{
     private float ShootTimer = 0.0f;
     private float imgRadius = 0.0f;
 
-    public float GetPosX(){return xPos;}
-    public float GetPosY(){ return yPos;}
-    public float GetImgRadius(){return imgRadius;}
 
     @Override
     public boolean IsDone() {
         return isDone;
     }
-
     @Override
     public void SetIsDone(boolean _isDone) {
         isDone = _isDone;
+    }
+
+
+    @Override
+    public String GetType(){return "Player";}
+    @Override
+    public float GetPosX(){return xPos;}
+    @Override
+    public float GetPosY(){return yPos;}
+    @Override
+    public float GetRadius(){return imgRadius;}
+
+    // Collision Checker
+    @Override
+    public void OnHit(Collidable _other){
+        if(_other.GetType() == "Enemy")
+        {
+            // health code here
+        }
     }
 
     @Override

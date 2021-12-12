@@ -6,7 +6,7 @@ import android.util.Log;
 
 import java.util.Random;
 
-public class E_virus implements EntityBase{
+public class E_virus implements EntityBase, Collidable{
     private boolean isDone = false;
     public float xPos, yPos;
     private Sprite virusSprite = null;
@@ -14,18 +14,37 @@ public class E_virus implements EntityBase{
     private float imgRadius = 0.0f;
 
     Random ranGen = new Random(); //wk 8=>Random Generator
-    public float GetPosX(){return xPos;}
-    public float GetPosY(){ return yPos;}
-    public float GetImgRadius(){return imgRadius;}
 
     @Override
     public boolean IsDone() {
         return isDone;
     }
-
     @Override
     public void SetIsDone(boolean _isDone) {
         isDone = _isDone;
+    }
+
+
+    @Override
+    public String GetType(){return "Enemy";}
+    @Override
+    public float GetPosX(){return xPos;}
+    @Override
+    public float GetPosY(){return yPos;}
+    @Override
+    public float GetRadius(){return imgRadius;}
+
+    // Collision Checker
+    @Override
+    public void OnHit(Collidable _other){
+        if(_other.GetType() == "Player")
+        {
+            this.SetIsDone(true);
+        }
+        else if (_other.GetType() == "Bullet")
+        {
+            this.SetIsDone(true);
+        }
     }
 
     @Override
@@ -38,8 +57,8 @@ public class E_virus implements EntityBase{
         int max = (int) (_view.getWidth() * 0.8);
 
         yPos = _view.getHeight() * 0.05f;
-        xPos = ranGen.nextInt((max - min) + 1) + min;
-        //xPos = ranGen.nextFloat() * _view.getWidth();
+        //xPos = ranGen.nextInt((max - min) + 1) + min;
+        xPos = ranGen.nextFloat() * _view.getWidth();
         Instance = this;
     }
 
@@ -48,13 +67,6 @@ public class E_virus implements EntityBase{
         yPos += _dt * 150.f;
 
         virusSprite.Update(_dt);
-        // Check collision with the player
-        if (Collision.SphereToSphere(DraggablePlayer.Instance.GetPosX(), DraggablePlayer.Instance.GetPosY(),DraggablePlayer.Instance.GetImgRadius()
-                , xPos, yPos, imgRadius) )
-        {
-            this.SetIsDone(true);
-            //Log.d("check","Collision with player");
-        }
     }
 
     @Override

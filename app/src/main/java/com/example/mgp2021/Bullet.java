@@ -8,29 +8,49 @@ import android.graphics.Matrix;
 import android.util.Log;
 import android.view.SurfaceView;
 
-public class Bullet implements EntityBase {
+public class Bullet implements EntityBase, Collidable {
     private boolean isDone = false;
     private Bitmap bullet = null;
     private float xPos, yPos;
+    private float imgRadius = 0.0f;
+
     private SurfaceView view = null;
     //public final static Bullet Instance = new Bullet();
 
-
+    public float GetImgRadius(){return imgRadius;}
     @Override
     public boolean IsDone() {
         return isDone;
     }
-
     @Override
     public void SetIsDone(boolean _isDone) {
         isDone = _isDone;
     }
 
+
+    @Override
+    public String GetType(){return "Bullet";}
+    @Override
+    public float GetPosX(){return xPos;}
+    @Override
+    public float GetPosY(){return yPos;}
+    @Override
+    public float GetRadius(){return imgRadius;}
+
+    // Collision Checker
+    @Override
+    public void OnHit(Collidable _other){
+        if(_other.GetType() == "Enemy")
+        {
+            this.SetIsDone(true);
+        }
+    }
+
     @Override
     public void Init(SurfaceView _view) {
         //setting up values
-        xPos = DraggablePlayer.Instance.GetPosX();
-        yPos = DraggablePlayer.Instance.GetPosY();
+        xPos = DraggablePlayer.Instance.GetPosX() - 20.f;
+        yPos = DraggablePlayer.Instance.GetPosY() - 60.f;
         bullet = BitmapFactory.decodeResource(_view.getResources(), R.drawable.bullet);
     }
 
@@ -41,7 +61,6 @@ public class Bullet implements EntityBase {
 
     @Override
     public void Render(Canvas _canvas) {
-        //_canvas.drawBitmap(scaledbmp, xPos, yPos, null); //1st image
         _canvas.drawBitmap(bullet,xPos,yPos, null);
     }
 

@@ -38,17 +38,17 @@ public class PauseButtonEntity implements EntityBase{
     @Override
     public void Init(SurfaceView _view) {
 
-        bmpP = ResourceManager.Instance.GetBitmap(R.drawable.pause);
-        bmpUP = ResourceManager.Instance.GetBitmap(R.drawable.pause);
+        bmpP = ResourceManager.Instance.GetBitmap(R.drawable.menu_button);
+        bmpUP = ResourceManager.Instance.GetBitmap(R.drawable.menu_button);
 
         DisplayMetrics metrics = _view.getResources().getDisplayMetrics();
         ScreenWidth = metrics.widthPixels;
         ScreenHeight = metrics.heightPixels;
 
-        ScaledbmpP = Bitmap.createScaledBitmap(bmpP, (int) (ScreenWidth)/12, (int)(ScreenWidth)/7, true);
-        ScaledbmpUP = Bitmap.createScaledBitmap(bmpUP, (int) (ScreenWidth)/12, (int)(ScreenWidth)/7, true);
+        ScaledbmpP = Bitmap.createScaledBitmap(bmpP, (int) (ScreenWidth)/3, (int)(ScreenWidth)/7, true);
+        ScaledbmpUP = Bitmap.createScaledBitmap(bmpUP, (int) (ScreenWidth)/3, (int)(ScreenWidth)/7, true);
 
-        xPos = ScreenWidth - 150;
+        xPos = ScreenWidth - 200;
         yPos = 150;
 
         isInit = true;

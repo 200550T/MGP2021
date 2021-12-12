@@ -12,7 +12,9 @@ import android.view.SurfaceView;
 public class MainGameSceneState implements StateBase {
     private float timer = 0.0f;
     private float BulletTimer = 0.0f;
+    public float Firerate = 0.8f;
     private GamePage activity = null;
+    public static MainGameSceneState Instance = null;
     Bullet bullet = new Bullet();
 
     @Override
@@ -23,10 +25,12 @@ public class MainGameSceneState implements StateBase {
     @Override
     public void OnEnter(SurfaceView _view)
     {
+        Instance = this;
         RenderBackground.Create();
         RenderTextEntity.Create();
         DraggablePlayer.Create();
         Bullet.Create();
+        Powerup.Create();
         PauseButtonEntity.Create();
     }
 
@@ -46,7 +50,7 @@ public class MainGameSceneState implements StateBase {
     public void Update(float _dt) {
 
         BulletTimer += _dt;
-        if(BulletTimer >= 0.8)
+        if(BulletTimer >= Firerate)
         {
             Bullet.Create();
             BulletTimer = 0;

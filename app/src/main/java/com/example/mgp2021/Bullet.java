@@ -11,12 +11,9 @@ import android.view.SurfaceView;
 public class Bullet implements EntityBase, Collidable {
     private boolean isDone = false;
     private Bitmap bullet = null;
-    private float xPos, yPos;
+    private float xPos, yPos, yLimit;
     private float imgRadius = 0.0f;
-
     private SurfaceView view = null;
-    //public final static Bullet Instance = new Bullet();
-
     public float GetImgRadius(){return imgRadius;}
     @Override
     public boolean IsDone() {
@@ -51,12 +48,16 @@ public class Bullet implements EntityBase, Collidable {
         //setting up values
         xPos = DraggablePlayer.Instance.GetPosX() - 20.f;
         yPos = DraggablePlayer.Instance.GetPosY() - 60.f;
+        yLimit = _view.getHeight() * 0.01f;
         bullet = BitmapFactory.decodeResource(_view.getResources(), R.drawable.bullet);
     }
 
     @Override
     public void Update(float _dt) {
         yPos -= _dt * 300.f;
+
+        if(yPos < yLimit)
+            this.SetIsDone(true);
     }
 
     @Override

@@ -13,6 +13,7 @@ public interface EntityBase
          ENT_BULLET,
          ENT_PAUSE,
          ENT_ENEMY,
+         ENT_POWERUP,
          ENT_DEFAULT,
     }
 

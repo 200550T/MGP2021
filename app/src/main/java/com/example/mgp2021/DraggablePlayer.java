@@ -9,10 +9,12 @@ public class DraggablePlayer implements EntityBase, Collidable{
     private float xPos, yPos = 0.0f;
     private Sprite playerSprite = null;
     public static DraggablePlayer Instance = null;
-
-    private float ShootTimer = 0.0f;
     private float imgRadius = 0.0f;
 
+    private int currLvl = 0;
+    public int GetCurrLevel() {return currLvl;}
+    public void SetCurrLevel(int newLevel) {currLvl = newLevel;}
+    public void IncreaseLevel() {currLvl += 1;}
 
     @Override
     public boolean IsDone() {
@@ -50,6 +52,8 @@ public class DraggablePlayer implements EntityBase, Collidable{
         Instance = this;
     }
 
+
+
     @Override
     public void Update(float _dt) {
 
@@ -63,6 +67,15 @@ public class DraggablePlayer implements EntityBase, Collidable{
             {
                 xPos = TouchManager.Instance.GetPosX();
             }
+        }
+
+        if(currLvl == 0)
+        {
+            MainGameSceneState.Instance.Firerate = 0.8f;
+        }
+        else if(currLvl == 1)
+        {
+            MainGameSceneState.Instance.Firerate = 0.4f;
         }
     }
 

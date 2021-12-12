@@ -39,7 +39,7 @@ public class EntityManager {
 
             entityList.get(i).Update(_dt);
 
-            // Check if need to clean up
+           // Check if need to clean up
             if (entityList.get(i).IsDone()) {
                 // Done! Time to add to the removal list
                 removalList.add(entityList.get(i));

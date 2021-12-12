@@ -40,10 +40,12 @@ public class E_virus implements EntityBase, Collidable{
         if(_other.GetType() == "Player")
         {
             this.SetIsDone(true);
+            RenderTextEntity.lives -= 1;
         }
         else if (_other.GetType() == "Bullet")
         {
             this.SetIsDone(true);
+            RenderTextEntity.score += 1;
         }
     }
 

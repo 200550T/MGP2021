@@ -18,6 +18,8 @@ public class Player implements EntityBase{
 
     private float xLimitRight, xLimitLeft, xStart = 0;
 
+    private boolean isActive = true;
+
     //private float xPos, yPos, offset;
 //    private SurfaceView view = null;
     Matrix tfx = new Matrix();
@@ -48,13 +50,21 @@ public class Player implements EntityBase{
 
     @Override
     public void Update(float _dt) {
-        if (TouchManager.Instance.IsDown() && (TouchManager.Instance.GetPosX() > xStart)){
+        if (isActive == true)
+        {
+            if (TouchManager.Instance.IsDown() && (TouchManager.Instance.GetPosX() > xStart)){
 
                 xPos += _dt * 300.f;
-        }
-        else if (TouchManager.Instance.IsDown() && (TouchManager.Instance.GetPosX() < xStart)){
+            }
+            else if (TouchManager.Instance.IsDown() && (TouchManager.Instance.GetPosX() < xStart)){
 
                 xPos -= _dt * 300.f;
+            }
+        }
+
+        if (RenderTextEntity.lives <= 0)
+        {
+            isActive = false;
         }
     }
 
@@ -63,7 +73,10 @@ public class Player implements EntityBase{
         Matrix transform = new Matrix();
         transform.postTranslate(-bmp.getWidth()*0.5f, -bmp.getHeight()*0.5f);
         transform.postTranslate(xPos, yPos);
-        _canvas.drawBitmap(bmp, transform, null);
+        if (isActive == true)
+        {
+            _canvas.drawBitmap(bmp, transform, null);
+        }
     }
 
     @Override

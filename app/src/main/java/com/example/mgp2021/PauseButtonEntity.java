@@ -69,6 +69,9 @@ public class PauseButtonEntity implements EntityBase{
                 {
                     Paused = true;
                     StateManager.Instance.ChangeState("Mainmenu");
+
+                    RenderTextEntity.score = 0;
+                    RenderTextEntity.lives = 3;
                 }
                 buttonDelay = 0;
                 //StateManager.Instance.ChangeState("Mainmenu");

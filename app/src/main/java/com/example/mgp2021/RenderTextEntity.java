@@ -8,12 +8,14 @@ import android.graphics.Typeface;
 import android.util.DisplayMetrics;
 import android.view.SurfaceView;
 
+import com.example.mgp2021.E_virus;
+
 public class RenderTextEntity implements EntityBase{
 
     private boolean isDone = false;
 
     //Paint
-    Paint paint = new Paint();
+    //Paint paint = new Paint();
     private int red = 0, green = 0, blue = 0; //0-255
 
     Typeface myfont;
@@ -24,7 +26,8 @@ public class RenderTextEntity implements EntityBase{
     long lastFPSTime = 0;
     float FPS;
 
-    int score;
+    static int score = 0;
+    static int lives = 3;
 
     @Override
     public boolean IsDone() {
@@ -51,20 +54,10 @@ public class RenderTextEntity implements EntityBase{
 
         if(currentTime - lastFPSTime > 1000)
         {
-            FPS = (frameCount * 1000.f)/ (currentTime - lastFPSTime);
+            FPS = (frameCount * 1000.f) / (currentTime - lastFPSTime);
             lastFPSTime = currentTime;
             frameCount = 0;
         }
-
-
-        // Optional below
-        //get score (updated from bullet to enemy collisions in EntityManager.java)
-
-
-        //if ( EntityManager. )
-        //{
-        ////      score += 1;
-        //}
     }
 
     @Override
@@ -74,9 +67,27 @@ public class RenderTextEntity implements EntityBase{
         paint.setStrokeWidth(200);
         paint.setTypeface(myfont);
         paint.setTextSize(70);
+
+        Paint paint2 = new Paint();
+        paint2. setARGB(255, 255,0,0);
+        paint2.setStrokeWidth(200);
+        paint2.setTypeface(myfont);
+        paint2.setTextSize(70);
+
         _canvas.drawText("FPS: " + FPS, 30,80,paint); //for now, default number but can use _view.getwidth/ ?
 
-            // _canvas.drawText("Score: " + Score, 30,150,paint); //for now, default number but can use _view.getwidth/ ?
+        _canvas.drawText("Score: " + score, 30,150,paint); //for now, default number but can use _view.getwidth/ ?
+
+        _canvas.drawText("Lives: " + lives, 30,220,paint); //for now, default number but can use _view.getwidth/ ?
+
+        if (lives <= 0)
+        {
+            // _canvas.drawText("GAME OVER", 30,290,paint2); //for now, default number but can use _view.getwidth/ ?
+            StateManager.Instance.ChangeState("Mainmenu");
+
+            RenderTextEntity.score = 0;
+            RenderTextEntity.lives = 3;
+        }
     }
 
     @Override

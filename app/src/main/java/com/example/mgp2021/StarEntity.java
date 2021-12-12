@@ -1,7 +1,8 @@
 package com.example.mgp2021;
 
 // Created by TanSiewLan20201
-// Sample Entity 
+// Sample Entity
+// lyx test
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

@@ -24,6 +24,8 @@ public class RenderTextEntity implements EntityBase{
     long lastFPSTime = 0;
     float FPS;
 
+    int score;
+
     @Override
     public boolean IsDone() {
         return isDone;
@@ -53,6 +55,16 @@ public class RenderTextEntity implements EntityBase{
             lastFPSTime = currentTime;
             frameCount = 0;
         }
+
+
+        // Optional below
+        //get score (updated from bullet to enemy collisions in EntityManager.java)
+
+
+        //if ( EntityManager. )
+        //{
+        ////      score += 1;
+        //}
     }
 
     @Override
@@ -64,7 +76,7 @@ public class RenderTextEntity implements EntityBase{
         paint.setTextSize(70);
         _canvas.drawText("FPS: " + FPS, 30,80,paint); //for now, default number but can use _view.getwidth/ ?
 
-        // _canvas.drawText("Back", 30,80,paint); //for now, default number but can use _view.getwidth/ ?
+            // _canvas.drawText("Score: " + Score, 30,150,paint); //for now, default number but can use _view.getwidth/ ?
     }
 
     @Override

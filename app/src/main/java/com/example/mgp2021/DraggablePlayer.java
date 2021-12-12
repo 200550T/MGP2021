@@ -6,12 +6,16 @@ import android.view.SurfaceView;
 import java.util.Random;
 public class DraggablePlayer implements EntityBase{
     private boolean isDone = false;
-    public float xPos, yPos, offset;
-    private Sprite playerSprite = null;   // New on Week 8
+    private float xPos, yPos = 0.0f;
+    private Sprite playerSprite = null;
     public static DraggablePlayer Instance = null;
-    private float ShootTimer = 0.0f;
 
-    Random ranGen = new Random(); //wk 8=>Random Generator
+    private float ShootTimer = 0.0f;
+    private float imgRadius = 0.0f;
+
+    public float GetPosX(){return xPos;}
+    public float GetPosY(){ return yPos;}
+    public float GetImgRadius(){return imgRadius;}
 
     @Override
     public boolean IsDone() {
@@ -25,9 +29,7 @@ public class DraggablePlayer implements EntityBase{
 
     @Override
     public void Init(SurfaceView _view) {
-        //week 8 => create new sprite instance
         playerSprite = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.player2),1,1, 8 );
-        //week 8=>randomise position
         xPos = _view.getWidth() * 0.5f;
         yPos = _view.getHeight() * 0.85f;
         Instance = this;
@@ -36,17 +38,15 @@ public class DraggablePlayer implements EntityBase{
     @Override
     public void Update(float _dt) {
 
-        // wk8=> update sprite animation frame based on timing
         playerSprite.Update(_dt);
         //wk8=>Dragging code --
         if (TouchManager.Instance.HasTouch())  // Touch and drag
         {
             // Check collision with the player
-            float imgRadius1 = playerSprite.GetWidth() * 0.5f;
-            if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius1) )
+            imgRadius = playerSprite.GetWidth() * 0.5f;
+            if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius) )
             {
                 xPos = TouchManager.Instance.GetPosX();
-                //yPos = TouchManager.Instance.GetPosY();
             }
         }
     }

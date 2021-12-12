@@ -12,6 +12,8 @@ import android.view.WindowManager;
 public class GamePage extends Activity {
 
     public static GamePage Instance = null;
+    Bullet bullet = new Bullet();
+    //Bullet bullet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.SurfaceView;
 
 // Created by TanSiewLan2021
@@ -11,6 +12,7 @@ import android.view.SurfaceView;
 public class MainGameSceneState implements StateBase {
     private float timer = 0.0f;
     private GamePage activity = null;
+    Bullet bullet = new Bullet();
 
     @Override
     public String GetName() {
@@ -23,9 +25,9 @@ public class MainGameSceneState implements StateBase {
         RenderBackground.Create();
         RenderTextEntity.Create();
         DraggablePlayer.Create();
-        Bullet.Create();
+        //Bullet.Create();
         PauseButtonEntity.Create();
-        // Example to include another Renderview for Pause Button
+        E_virus.Create();
     }
 
     @Override
@@ -45,13 +47,26 @@ public class MainGameSceneState implements StateBase {
 
         EntityManager.Instance.Update(_dt);
 
-       //if (TouchManager.Instance.IsDown())
-       //{
-            //DraggablePlayer.Create();
-           //this.activity.CreateBullet();
-           //Bullet.Create();
-       //}
+        //Broken code do not uncomment first
+//       if (TouchManager.Instance.IsDown())
+//       {
+//            DraggablePlayer.Create();
+//           this.activity.CreateBullet();
+//           Log.d("Test", "works");
+//           Bullet.Create();
+//       }
+
+//       timer = 10 * _dt;
+//       if(timer >= 1)
+//       {
+//           E_virus.Create();
+//           timer = 0;
+//       }
     }
+    public void setActivity(GamePage activity) {
+        this.activity = activity;
+    }
+
 }
 
 

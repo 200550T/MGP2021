@@ -11,7 +11,8 @@ public class LayerConstants {
     public final static int STAR_LAYER = 2;
     public final static int BULLET_LAYER = 3;
     public final static int PLAYER_LAYER = 4;
-    public final static int PAUSEBUTTON_LAYER = 5;
+    public final static int ENEMY_LAYER = 5;
+    public final static int PAUSEBUTTON_LAYER = 6;
     public final static int GAMEOBJECTS_LAYER = 100;  // Example
     public final static int UI_LAYER = 1000;
 }

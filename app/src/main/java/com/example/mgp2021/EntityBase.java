@@ -12,6 +12,7 @@ public interface EntityBase
         ENT_PLAYER,
          ENT_BULLET,
          ENT_PAUSE,
+         ENT_ENEMY,
          ENT_DEFAULT,
     }
 

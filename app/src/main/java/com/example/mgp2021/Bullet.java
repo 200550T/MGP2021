@@ -1,5 +1,6 @@
 package com.example.mgp2021;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -14,7 +15,7 @@ public class Bullet implements EntityBase {
     private SurfaceView view = null;
     //public final static Bullet Instance = new Bullet();
 
-    //check if anything to do with entity (use for pause)
+
     @Override
     public boolean IsDone() {
         return isDone;
@@ -28,11 +29,9 @@ public class Bullet implements EntityBase {
     @Override
     public void Init(SurfaceView _view) {
         //setting up values
-        xPos = DraggablePlayer.Instance.xPos;
-        yPos = DraggablePlayer.Instance.yPos;
-        //yLimit = _view.getHeight() * 0.5f;
+        xPos = DraggablePlayer.Instance.GetPosX();
+        yPos = DraggablePlayer.Instance.GetPosY();
         bullet = BitmapFactory.decodeResource(_view.getResources(), R.drawable.bullet);
-        //System.out.print("drawable bullet: " + R.drawable.bullet);
     }
 
     @Override
@@ -43,10 +42,7 @@ public class Bullet implements EntityBase {
     @Override
     public void Render(Canvas _canvas) {
         //_canvas.drawBitmap(scaledbmp, xPos, yPos, null); //1st image
-        Matrix transform = new Matrix();
-        transform.postTranslate(-bullet.getWidth()*0.5f, -bullet.getHeight()*0.5f);
-        transform.postTranslate(xPos, yPos);
-        _canvas.drawBitmap(bullet, transform, null);
+        _canvas.drawBitmap(bullet,xPos,yPos, null);
     }
 
     @Override

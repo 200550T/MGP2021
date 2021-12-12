@@ -91,26 +91,4 @@ public class Player implements EntityBase{
         return result;
     }
 
-    /*Override
-    public float GetPosX() {
-        return xPos;
-    }
-
-    public float GetPosY() {
-        return yPos;
-    }
-
-
-    // T
-    // Optional
-    //public float GetRadius(){
-    // return bmp.getHeight() * 0.5f;
-    //}
-
-    public void OnHit(Collidable _other){
-        if (_other.GetType() == "SampleEntity")
-        {
-            // SetIsDone (true);
-        }
-    }*/
 }

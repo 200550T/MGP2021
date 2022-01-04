@@ -13,6 +13,7 @@ public class MainGameSceneState implements StateBase {
     private float timer = 0.0f;
     private float BulletTimer = 0.0f;
     public float Firerate = 0.8f;
+    public int PlayerLevel = 0;
     private GamePage activity = null;
     public static MainGameSceneState Instance = null;
     Bullet bullet = new Bullet();
@@ -29,9 +30,9 @@ public class MainGameSceneState implements StateBase {
         RenderBackground.Create();
         RenderTextEntity.Create();
         DraggablePlayer.Create();
-        Bullet.Create();
-        Powerup.Create();
+        //Powerup.Create();
         PauseButtonEntity.Create();
+        AudioManager.Instance.PlayAudio(R.raw.bgm,7);
     }
 
     @Override

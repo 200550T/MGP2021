@@ -23,6 +23,7 @@ public class Bullet implements EntityBase, Collidable {
     public void SetIsDone(boolean _isDone) {
         isDone = _isDone;
     }
+    public void SetXpos(float newXpos) {xPos = newXpos;}
 
 
     @Override
@@ -50,6 +51,7 @@ public class Bullet implements EntityBase, Collidable {
         yPos = DraggablePlayer.Instance.GetPosY() - 60.f;
         yLimit = _view.getHeight() * 0.01f;
         bullet = BitmapFactory.decodeResource(_view.getResources(), R.drawable.bullet);
+        AudioManager.Instance.PlayAudio(R.raw.shoot,10);
     }
 
     @Override

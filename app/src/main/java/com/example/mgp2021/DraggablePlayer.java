@@ -2,6 +2,9 @@ package com.example.mgp2021;
 import android.graphics.Canvas;
 import android.util.Log;
 import android.view.SurfaceView;
+import android.os.Build;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 
 import java.util.Random;
 public class DraggablePlayer implements EntityBase, Collidable{
@@ -15,6 +18,7 @@ public class DraggablePlayer implements EntityBase, Collidable{
     public int GetCurrLevel() {return currLvl;}
     public void SetCurrLevel(int newLevel) {currLvl = newLevel;}
     public void IncreaseLevel() {currLvl += 1;}
+    private Vibrator _vibrator;
 
     @Override
     public boolean IsDone() {
@@ -40,7 +44,8 @@ public class DraggablePlayer implements EntityBase, Collidable{
     public void OnHit(Collidable _other){
         if(_other.GetType() == "Enemy")
         {
-            // health code here
+            RenderTextEntity.lives -= 1;
+            startVibrate();
         }
     }
 
@@ -50,9 +55,23 @@ public class DraggablePlayer implements EntityBase, Collidable{
         xPos = _view.getWidth() * 0.5f;
         yPos = _view.getHeight() * 0.85f;
         Instance = this;
+        _vibrator = (Vibrator)_view.getContext().getSystemService(_view.getContext().VIBRATOR_SERVICE);
     }
 
+    public void startVibrate(){
+        if(Build.VERSION.SDK_INT >= 26)
+        {
+            _vibrator.vibrate(VibrationEffect.createOneShot(150, 10));
+        }
+        else{
+            long pattern[] = {0,50,0};
+            _vibrator.vibrate(pattern, -1);
+        }
+    }
 
+    public void stopVibrate(){
+        _vibrator.cancel();
+    }
 
     @Override
     public void Update(float _dt) {
@@ -77,6 +96,11 @@ public class DraggablePlayer implements EntityBase, Collidable{
         {
             MainGameSceneState.Instance.Firerate = 0.4f;
         }
+/*        else if(currLvl == 2)
+        {
+            MainGameSceneState.Instance.Firerate = 0.5f;
+            MainGameSceneState.Instance.PlayerLevel = 2;
+        }*/
     }
 
     @Override

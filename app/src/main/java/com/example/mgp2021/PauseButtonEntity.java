@@ -70,6 +70,7 @@ public class PauseButtonEntity implements EntityBase{
                     Paused = true;
                     StateManager.Instance.ChangeState("Mainmenu");
 
+                    AudioManager.Instance.StopAudio(R.raw.bgm);
                     RenderTextEntity.score = 0;
                     RenderTextEntity.lives = 3;
                 }

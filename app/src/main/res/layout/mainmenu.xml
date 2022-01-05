@@ -19,7 +19,7 @@
         android:textSize="18dp" />
 
     <Button
-        android:id="@+id/btn_back"
+        android:id="@+id/btn_exit"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
@@ -27,7 +27,7 @@
         android:layout_marginTop="437dp"
         android:layout_marginRight="125dp"
         android:background="@drawable/button"
-        android:text="Back"
+        android:text="Exit"
         android:textColor="#bdfcf2"
         android:textSize="18dp" />
 

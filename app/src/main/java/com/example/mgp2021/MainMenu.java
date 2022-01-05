@@ -1,6 +1,9 @@
 package com.example.mgp2021;
 
+import static androidx.fragment.app.FragmentManager.findFragment;
+
 import android.app.Activity;
+import android.app.KeyguardManager;
 import android.graphics.Canvas;
 import android.view.SurfaceView;
 import android.view.View;
@@ -11,16 +14,22 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.content.Intent;
 
+import androidx.fragment.app.FragmentManager;
+
 // Created by TanSiewLan2021
 
 public class MainMenu extends Activity implements OnClickListener, StateBase {  //Using StateBase class
 
+    public static MainMenu Instance = null;
     //Define buttons
     private Button btn_start;
-    private Button btn_back;
+    private Button btn_exit;
+    private boolean exit_check = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Instance = this;
+
         super.onCreate(savedInstanceState);
 
         // Hide Title
@@ -35,8 +44,8 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {  
         btn_start = (Button)findViewById(R.id.btn_start);
         btn_start.setOnClickListener(this); //Set Listener to this button --> Start Button
 
-        btn_back = (Button)findViewById(R.id.btn_back);
-        btn_back.setOnClickListener(this); //Set Listener to this button --> Back Button
+        btn_exit = (Button)findViewById(R.id.btn_exit);
+        btn_exit.setOnClickListener(this); //Set Listener to this button --> Back Button
 
 		  StateManager.Instance.AddState(new MainMenu());
     }
@@ -59,9 +68,10 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {  
 
         }
 
-        else if (v == btn_back)
+        else if (v == btn_exit)
         {
-            intent.setClass(this, MainMenu.class);
+            // intent.setClass(this, MainMenu.class);
+            exit_check = true;
         }
         startActivity(intent);
 
@@ -81,6 +91,14 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {  
 	
     @Override
     public void Update(float _dt) {
+        if (exit_check)
+        {
+            if (ExitConfirmDialog.IsShown)
+                return;
+
+            ExitConfirmDialog ExitDialog = new ExitConfirmDialog();
+            // ExitDialog.show(this.getFragmentManager(), "ExitConfirm");
+        }
     }
 	
     @Override

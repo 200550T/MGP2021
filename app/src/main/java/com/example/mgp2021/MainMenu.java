@@ -20,7 +20,7 @@ import androidx.fragment.app.FragmentManager;
 
 public class MainMenu extends Activity implements OnClickListener, StateBase {  //Using StateBase class
 
-    public static MainMenu Instance = null;
+    //public static MainMenu Instance = null;
     //Define buttons
     private Button btn_start;
     private Button btn_exit;
@@ -28,7 +28,7 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {  
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Instance = this;
+        //Instance = this;
 
         super.onCreate(savedInstanceState);
 
@@ -47,7 +47,7 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {  
         btn_exit = (Button)findViewById(R.id.btn_exit);
         btn_exit.setOnClickListener(this); //Set Listener to this button --> Back Button
 
-		  StateManager.Instance.AddState(new MainMenu());
+        StateManager.Instance.AddState(new MainMenu());
     }
 
     @Override
@@ -70,8 +70,14 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {  
 
         else if (v == btn_exit)
         {
-            // intent.setClass(this, MainMenu.class);
-            exit_check = true;
+            intent.setClass(this, MainMenu.class);
+            //exit_check = true;
+
+            //if (ExitConfirmDialog.IsShown)
+                //return;
+
+            //ExitConfirmDialog ExitDialog = new ExitConfirmDialog();
+            //ExitDialog.show(this.getFragmentManager(), "ExitConfirm");
         }
         startActivity(intent);
 
@@ -91,14 +97,6 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {  
 	
     @Override
     public void Update(float _dt) {
-        if (exit_check)
-        {
-            if (ExitConfirmDialog.IsShown)
-                return;
-
-            ExitConfirmDialog ExitDialog = new ExitConfirmDialog();
-            // ExitDialog.show(this.getFragmentManager(), "ExitConfirm");
-        }
     }
 	
     @Override

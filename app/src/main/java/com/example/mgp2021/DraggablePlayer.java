@@ -76,18 +76,36 @@ public class DraggablePlayer implements EntityBase, Collidable{
     @Override
     public void Update(float _dt) {
 
+        if(GameSystem.Instance.GetIsPaused()){return;}
+
         playerSprite.Update(_dt);
         //wk8=>Dragging code --
         if (TouchManager.Instance.HasTouch())  // Touch and drag
         {
             // Check collision with the player
             imgRadius = playerSprite.GetWidth() * 0.5f;
-            if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius) )
-            {
+            if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius)) {
                 xPos = TouchManager.Instance.GetPosX();
             }
         }
 
+        //if no lives left trigger gameover
+        if (RenderTextEntity.lives <= 0)
+        {
+            // _canvas.drawText("GAME OVER", 30,290,paint2); //for now, default number but can use _view.getwidth/ ?
+            //StateManager.Instance.ChangeState("Mainmenu");
+
+            //pause the game
+            GameSystem.Instance.SetIsPaused(true);
+
+            //show game over dialog
+            if (GameOverDialog.IsShown)
+                return;
+            GameOverDialog GameOver = new GameOverDialog();
+            GameOver.show(GamePage.Instance.getFragmentManager(), "GameOver");
+        }
+
+        //powerup
         if(currLvl == 0)
         {
             MainGameSceneState.Instance.Firerate = 0.8f;

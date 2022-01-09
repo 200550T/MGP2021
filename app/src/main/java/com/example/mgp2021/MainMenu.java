@@ -65,19 +65,22 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {  
             // intent --> to set to another class which another page or screen that we are launching.
             intent.setClass(this, GamePage.class);
  				 StateManager.Instance.ChangeState("MainGame"); // Default is like a loading page
+            GameSystem.Instance.SetIsPaused(false);
 
+            RenderTextEntity.score = 0;
+            RenderTextEntity.lives = 3;
         }
 
         else if (v == btn_exit)
         {
             intent.setClass(this, MainMenu.class);
-            //exit_check = true;
+            exit_check = true;
 
-            //if (ExitConfirmDialog.IsShown)
-                //return;
+  /*         if (ExitConfirmDialog.IsShown)
+                return;
 
-            //ExitConfirmDialog ExitDialog = new ExitConfirmDialog();
-            //ExitDialog.show(this.getFragmentManager(), "ExitConfirm");
+            ExitConfirmDialog ExitDialog = new ExitConfirmDialog();
+            ExitDialog.show(this.getFragmentManager(), "ExitConfirm");*/
         }
         startActivity(intent);
 

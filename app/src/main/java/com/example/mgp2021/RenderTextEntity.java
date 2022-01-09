@@ -80,14 +80,6 @@ public class RenderTextEntity implements EntityBase{
 
         _canvas.drawText("Lives: " + lives, 30,220,paint); //for now, default number but can use _view.getwidth/ ?
 
-        if (lives <= 0)
-        {
-            // _canvas.drawText("GAME OVER", 30,290,paint2); //for now, default number but can use _view.getwidth/ ?
-            StateManager.Instance.ChangeState("Mainmenu");
-
-            RenderTextEntity.score = 0;
-            RenderTextEntity.lives = 3;
-        }
     }
 
     @Override

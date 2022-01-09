@@ -51,11 +51,12 @@ public class Bullet implements EntityBase, Collidable {
         yPos = DraggablePlayer.Instance.GetPosY() - 60.f;
         yLimit = _view.getHeight() * 0.01f;
         bullet = BitmapFactory.decodeResource(_view.getResources(), R.drawable.bullet);
-        AudioManager.Instance.PlayAudio(R.raw.shoot,10);
+        AudioManager.Instance.PlayAudio(R.raw.shoot,100);
     }
 
     @Override
     public void Update(float _dt) {
+        if(GameSystem.Instance.GetIsPaused()){return;}
         yPos -= _dt * 300.f;
 
         if(yPos < yLimit)

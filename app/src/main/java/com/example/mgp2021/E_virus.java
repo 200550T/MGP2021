@@ -44,7 +44,7 @@ public class E_virus implements EntityBase, Collidable{
         else if (_other.GetType() == "Bullet")
         {
             this.SetIsDone(true);
-            AudioManager.Instance.PlayAudio(R.raw.hit, 10);
+            AudioManager.Instance.PlayAudio(R.raw.hit, 100);
             RenderTextEntity.score += 1;
         }
     }
@@ -66,8 +66,8 @@ public class E_virus implements EntityBase, Collidable{
 
     @Override
     public void Update(float _dt) {
+        if(GameSystem.Instance.GetIsPaused()){return;}
         yPos += _dt * 150.f;
-
         virusSprite.Update(_dt);
     }
 

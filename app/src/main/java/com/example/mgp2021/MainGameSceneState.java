@@ -32,7 +32,7 @@ public class MainGameSceneState implements StateBase {
         DraggablePlayer.Create();
         //Powerup.Create();
         PauseButtonEntity.Create();
-        AudioManager.Instance.PlayAudio(R.raw.bgm,7);
+        AudioManager.Instance.PlayAudio(R.raw.bgm,100);
     }
 
     @Override
@@ -49,19 +49,22 @@ public class MainGameSceneState implements StateBase {
 
     @Override
     public void Update(float _dt) {
-
-        BulletTimer += _dt;
-        if(BulletTimer >= Firerate)
+        //if(GameSystem.Instance.GetIsPaused()){return;}
+        if(GameSystem.Instance.GetIsPaused() == false)
         {
-            Bullet.Create();
-            BulletTimer = 0;
-        }
+            BulletTimer += _dt;
+            if(BulletTimer >= Firerate)
+            {
+                Bullet.Create();
+                BulletTimer = 0;
+            }
 
-        timer += 1 * _dt;
-        if(timer >= 2)
-        {
-           E_virus.Create();
-           timer = 0;
+            timer += 1 * _dt;
+            if(timer >= 2)
+            {
+                E_virus.Create();
+                timer = 0;
+            }
         }
 
         EntityManager.Instance.Update(_dt);

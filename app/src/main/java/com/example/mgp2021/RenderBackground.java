@@ -46,6 +46,7 @@ public class RenderBackground implements EntityBase {
     @Override
     public void Update(float _dt) {
 
+        if(GameSystem.Instance.GetIsPaused()){return;}
         yPos += _dt * 500; // deals w the speed of moving the screen
 
         if (yPos > ScreenHeight) {

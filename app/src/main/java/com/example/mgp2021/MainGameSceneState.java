@@ -45,12 +45,6 @@ public class MainGameSceneState implements StateBase {
     public void Render(Canvas _canvas)
     {
         EntityManager.Instance.Render(_canvas);
-
-        String scoreText = String.format("Highscore:%d", GameSystem.Instance.GetIntFromSave("Highscore"));
-        Paint paint = new Paint();
-        paint.setColor(Color.WHITE);
-        paint.setTextSize(70);
-        _canvas.drawText(scoreText,10,10,paint);
     }
 
     @Override

@@ -40,7 +40,7 @@
         android:layout_marginTop="381dp"
         android:layout_marginRight="125dp"
         android:background="@drawable/button"
-        android:text="Leaderboard"
+        android:text="Highscore"
         android:textColor="#bdfcf2"
         android:textSize="18dp" />
 

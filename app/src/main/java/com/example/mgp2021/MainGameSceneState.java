@@ -12,7 +12,7 @@ import android.view.SurfaceView;
 public class MainGameSceneState implements StateBase {
     private float timer = 0.0f;
     private float BulletTimer = 0.0f;
-    public float Firerate = 0.8f;
+    public float Firerate = 0.05f;
     public int PlayerLevel = 0;
     private GamePage activity = null;
     public static MainGameSceneState Instance = null;
@@ -45,6 +45,12 @@ public class MainGameSceneState implements StateBase {
     public void Render(Canvas _canvas)
     {
         EntityManager.Instance.Render(_canvas);
+
+        String scoreText = String.format("Highscore:%d", GameSystem.Instance.GetIntFromSave("Highscore"));
+        Paint paint = new Paint();
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(70);
+        _canvas.drawText(scoreText,10,10,paint);
     }
 
     @Override
@@ -60,7 +66,7 @@ public class MainGameSceneState implements StateBase {
             }
 
             timer += 1 * _dt;
-            if(timer >= 2)
+            if(timer >= 1.2)
             {
                 E_virus.Create();
                 timer = 0;

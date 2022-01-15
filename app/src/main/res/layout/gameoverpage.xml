@@ -3,45 +3,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:background="@drawable/menu">
+    android:background="@drawable/blankbg">
 
     <Button
-        android:id="@+id/btn_start"
+        android:id="@+id/btn_menu"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="307dp"
-        android:layout_marginRight="125dp"
+        android:layout_marginTop="501dp"
+        android:layout_marginRight="224dp"
         android:background="@drawable/button"
-        android:text="Start"
+        android:text="Menu"
         android:textColor="#bdfcf2"
         android:textSize="18dp" />
 
     <Button
-        android:id="@+id/btn_exit"
+        android:id="@+id/btn_playagain"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="453dp"
-        android:layout_marginRight="125dp"
+        android:layout_marginTop="429dp"
+        android:layout_marginRight="224dp"
         android:background="@drawable/button"
-        android:text="Exit"
+        android:text="Play Again"
         android:textColor="#bdfcf2"
         android:textSize="18dp" />
 
     <Button
-        android:id="@+id/btn_highscore"
+        android:id="@+id/btn_sharescore"
         android:layout_width="150dp"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="381dp"
-        android:layout_marginRight="125dp"
+        android:layout_marginTop="429dp"
+        android:layout_marginRight="32dp"
         android:background="@drawable/button"
-        android:text="Leaderboard"
+        android:text="Share Score"
         android:textColor="#bdfcf2"
         android:textSize="18dp" />
 
+    <TextView
+        android:id="@+id/scoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginBottom="100dp"
+        android:fontFamily="monospace"
+        android:text="Game Over"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#00eff2"
+        android:textSize="50sp" />
 </RelativeLayout>

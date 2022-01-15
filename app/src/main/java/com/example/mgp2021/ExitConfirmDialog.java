@@ -21,7 +21,7 @@ public class ExitConfirmDialog extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
                         // User triggered exit
                         //GameSystem.Instance.SetIsPaused(!GameSystem.Instance.GetIspaused());
-                        // System.exit(0);
+                        System.exit(0);
                         IsShown = false;
                     }
                 })

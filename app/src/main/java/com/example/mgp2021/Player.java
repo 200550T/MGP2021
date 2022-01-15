@@ -62,10 +62,6 @@ public class Player implements EntityBase{
             }
         }
 
-        if (RenderTextEntity.lives <= 0)
-        {
-            isActive = false;
-        }
     }
 
     @Override

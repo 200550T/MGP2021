@@ -5,6 +5,7 @@ import static androidx.fragment.app.FragmentManager.findFragment;
 import android.app.Activity;
 import android.app.KeyguardManager;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -24,6 +25,7 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {  
     //Define buttons
     private Button btn_start;
     private Button btn_exit;
+    private Button btn_highscore;
     private boolean exit_check = false;
 
     @Override
@@ -43,6 +45,9 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {  
 
         btn_start = (Button)findViewById(R.id.btn_start);
         btn_start.setOnClickListener(this); //Set Listener to this button --> Start Button
+
+        btn_highscore = (Button)findViewById(R.id.btn_highscore);
+        btn_highscore.setOnClickListener(this); //Set Listener to this button --> Highscore Button
 
         btn_exit = (Button)findViewById(R.id.btn_exit);
         btn_exit.setOnClickListener(this); //Set Listener to this button --> Back Button
@@ -69,6 +74,12 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {  
 
             RenderTextEntity.score = 0;
             RenderTextEntity.lives = 3;
+        }
+
+        if (v == btn_highscore)
+        {
+            intent.setClass(this, HighscorePage.class);
+            StateManager.Instance.ChangeState("HighscorePage");
         }
 
         else if (v == btn_exit)

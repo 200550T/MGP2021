@@ -98,6 +98,14 @@ public class DraggablePlayer implements EntityBase, Collidable{
             //pause the game
             GameSystem.Instance.SetIsPaused(true);
 
+            //check if its a new highscore
+            int Highscore = GameSystem.Instance.GetIntFromSave("Highscore");
+            //set and save new highscore
+            if(RenderTextEntity.score > Highscore)
+            {
+                GameSystem.Instance.SaveEditInt("Highscore", RenderTextEntity.score);
+            }
+
             //show game over dialog
             if (GameOverDialog.IsShown)
                 return;
@@ -108,11 +116,11 @@ public class DraggablePlayer implements EntityBase, Collidable{
         //powerup
         if(currLvl == 0)
         {
-            MainGameSceneState.Instance.Firerate = 0.8f;
+            MainGameSceneState.Instance.Firerate = 0.5f;
         }
         else if(currLvl == 1)
         {
-            MainGameSceneState.Instance.Firerate = 0.4f;
+            MainGameSceneState.Instance.Firerate = 0.3f;
         }
 /*        else if(currLvl == 2)
         {

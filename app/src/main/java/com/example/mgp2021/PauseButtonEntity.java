@@ -38,8 +38,8 @@ public class PauseButtonEntity implements EntityBase{
     @Override
     public void Init(SurfaceView _view) {
 
-        bmpP = ResourceManager.Instance.GetBitmap(R.drawable.menu_button);
-        bmpUP = ResourceManager.Instance.GetBitmap(R.drawable.menu_button);
+        bmpP = ResourceManager.Instance.GetBitmap(R.drawable.pause_button);
+        bmpUP = ResourceManager.Instance.GetBitmap(R.drawable.pause_button);
 
         DisplayMetrics metrics = _view.getResources().getDisplayMetrics();
         ScreenWidth = metrics.widthPixels;
@@ -68,9 +68,18 @@ public class PauseButtonEntity implements EntityBase{
                 if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos,yPos, imgRadius) && buttonDelay >= 0.25)
                 {
                     Paused = true;
-                    StateManager.Instance.ChangeState("Mainmenu");
+                    // StateManager.Instance.ChangeState("Mainmenu");
 
-                    AudioManager.Instance.StopAudio(R.raw.bgm);
+                    // Button got clicked show the popup dialog
+                    if (PauseConfirmDialogFragment.IsShown)
+                        return;
+
+                    PauseConfirmDialogFragment newPauseConfirm = new PauseConfirmDialogFragment();
+                    newPauseConfirm.show(GamePage.Instance.getFragmentManager(), "PauseConfirm");
+                    // END OF NEW PAUSE BUTTON FUNCTIONALITY
+
+
+                    //AudioManager.Instance.StopAudio(R.raw.bgm);
                     RenderTextEntity.score = 0;
                     RenderTextEntity.lives = 3;
                 }
@@ -79,8 +88,10 @@ public class PauseButtonEntity implements EntityBase{
                 //GameSystem.Instance.SetIsPaused(!GameSystem.Instance.GetIsPaused());
             }
         }
-        else
+        else {
             Paused = false;
+            //AudioManager.Instance.StopAudio(R.raw.bgm);
+        }
 
 
     }

@@ -22,17 +22,18 @@ public class HighscorePage extends Activity implements OnClickListener, StateBas
     //public static MainMenu Instance = null;
     //Define buttons
     private Button btn_back;
+    private Button btn_sharehighscore;
     public static HighscorePage Instance = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Instance = this;
-
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        Instance = this;
+        new GameView(this);
         setContentView(R.layout.highscorepage);
 
         TextView scoreText;
@@ -42,7 +43,10 @@ public class HighscorePage extends Activity implements OnClickListener, StateBas
         //String.format("Highscore:%d", GameSystem.Instance.GetIntFromSave("Highscore"))
 
         btn_back = (Button)findViewById(R.id.btn_back);
-        btn_back.setOnClickListener(this); //Set Listener to this button --> Back Button
+        btn_back.setOnClickListener(this);
+
+        btn_sharehighscore = (Button)findViewById(R.id.btn_sharehighscore);
+        btn_sharehighscore.setOnClickListener(this);
 
         //StateManager.Instance.AddState(new HighscorePage();
     }
@@ -56,6 +60,11 @@ public class HighscorePage extends Activity implements OnClickListener, StateBas
         if (v == btn_back)
         {
             intent.setClass(this, MainMenu.class);
+        }
+
+        if (v == btn_sharehighscore)
+        {
+            intent.setClass(this, FacebookPost.class);
         }
         startActivity(intent);
 

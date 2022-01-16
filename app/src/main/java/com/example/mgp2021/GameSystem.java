@@ -40,7 +40,7 @@ public class GameSystem {
         StateManager.Instance.AddState(new GameoverPage());
 
         // Get our shared preferences (Save file)
-        sharedPref = GamePage.Instance.getSharedPreferences(SHARED_PREF_ID,0);
+        sharedPref = MainMenu.Instance.getSharedPreferences(SHARED_PREF_ID,0);
     }
 
     public void SetIsPaused(boolean _newIsPaused)

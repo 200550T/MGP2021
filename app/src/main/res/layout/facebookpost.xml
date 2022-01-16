@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/blankbg"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/fb_login_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"/>
+
+    <com.facebook.login.widget.ProfilePictureView
+        android:id="@+id/picture"
+        android:layout_width="150sp"
+        android:layout_height="150sp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:id="@+id/btn_sharemyscore"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/picture"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/fbicon"
+        />
+
+    <TextView
+        android:id="@+id/scoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btn_sharemyscore"
+        android:layout_alignBottom="@+id/btn_sharemyscore"
+        android:layout_toEndOf="@+id/btn_sharemyscore"
+        android:fontFamily="sans-serif"
+        android:text="SCORE"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#00eff2"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="182dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/picture"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="40dp"
+        android:layout_weight="0.23"
+        android:fontFamily="sans-serif"
+        android:textSize="30dp"
+        android:text="Check Out my score!"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFFF78" />
+
+    <Button
+        android:id="@+id/btn_exitshare"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="230dp"
+        android:layout_marginBottom="66dp"
+        android:background="@drawable/button"
+        android:text="Back"
+        android:textColor="#bdfcf2"
+        android:textSize="20dp" />
+</RelativeLayout>

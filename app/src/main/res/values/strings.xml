@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MGP2021</string>
+    <string name="facebook_app_id">1604223473292246</string>
+    <string name="fb_login_protocol_scheme">fb1604223473292246</string>
 </resources>

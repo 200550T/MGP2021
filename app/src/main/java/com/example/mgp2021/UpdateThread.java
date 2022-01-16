@@ -11,11 +11,14 @@ import android.view.SurfaceHolder;
 public class UpdateThread extends Thread {
 
     static final long targetFPS = 60;
-
     private GameView view = null;       //Gameview = Surfaceview
     private SurfaceHolder holder = null;
-
     private boolean isRunning = false;
+
+    private static StateManager stateManager = null;
+    private static ResourceManager resourceManager = null;
+    private static GameSystem gameSystem = null;
+    private static AudioManager audioManager = null;
 
     public UpdateThread(GameView _view)
     {
@@ -23,11 +26,28 @@ public class UpdateThread extends Thread {
         holder = _view.getHolder();
 
         // Manage your managers if there is any
-        ResourceManager.Instance.Init(_view);
+/*        ResourceManager.Instance.Init(_view);*/
         EntityManager.Instance.Init(_view);
-        GameSystem.Instance.Init(_view);
+/*        GameSystem.Instance.Init(_view);
         StateManager.Instance.Init(_view);
-        AudioManager.Instance.Init(_view);
+        AudioManager.Instance.Init(_view);*/
+
+        if(audioManager == null){
+            audioManager = AudioManager.Instance;
+            audioManager.Init(_view);
+        }
+        if(stateManager == null){
+            stateManager = StateManager.Instance;
+            stateManager.Init(_view);
+        }
+        if(gameSystem == null){
+            gameSystem = GameSystem.Instance;
+            gameSystem.Init(_view);
+        }
+        if(resourceManager == null){
+            resourceManager = ResourceManager.Instance;
+            resourceManager.Init(_view);
+        }
     }
 
     public boolean IsRunning()

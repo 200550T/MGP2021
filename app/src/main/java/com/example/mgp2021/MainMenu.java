@@ -26,12 +26,11 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {  
     private Button btn_start;
     private Button btn_exit;
     private Button btn_highscore;
+    public static MainMenu Instance = null;
     private boolean exit_check = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //Instance = this;
-
         super.onCreate(savedInstanceState);
 
         // Hide Title
@@ -41,6 +40,8 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {  
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        Instance = this;
+        new GameView(this);
         setContentView(R.layout.mainmenu);
 
         btn_start = (Button)findViewById(R.id.btn_start);
@@ -69,7 +70,7 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {  
         {
             // intent --> to set to another class which another page or screen that we are launching.
             intent.setClass(this, GamePage.class);
- 				 StateManager.Instance.ChangeState("MainGame"); // Default is like a loading page
+ 				 //StateManager.Instance.ChangeState("MainGame"); // Default is like a loading page
             GameSystem.Instance.SetIsPaused(false);
 
             RenderTextEntity.score = 0;

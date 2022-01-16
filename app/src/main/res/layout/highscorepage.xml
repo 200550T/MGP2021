@@ -12,9 +12,22 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_marginTop="613dp"
-        android:layout_marginRight="213dp"
+        android:layout_marginRight="214dp"
         android:background="@drawable/button"
         android:text="Back"
+        android:textColor="#bdfcf2"
+        android:textSize="18dp" />
+
+    <Button
+        android:id="@+id/btn_sharehighscore"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="343dp"
+        android:layout_marginRight="131dp"
+        android:background="@drawable/button"
+        android:text="Share"
         android:textColor="#bdfcf2"
         android:textSize="18dp" />
 
@@ -35,7 +48,8 @@
         android:layout_alignLeft="@id/btn_back"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="200dp"
-        android:text="0"
+        android:text="highscoretxt"
+        android:textAlignment="textStart"
         android:textColor="@color/white"
         android:textSize="50dp" />
 

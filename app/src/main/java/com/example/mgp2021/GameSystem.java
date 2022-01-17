@@ -38,6 +38,7 @@ public class GameSystem {
         StateManager.Instance.AddState(new MainGameSceneState());
         StateManager.Instance.AddState(new HighscorePage());
         StateManager.Instance.AddState(new GameoverPage());
+        StateManager.Instance.AddState(new FacebookPost());
 
         // Get our shared preferences (Save file)
         sharedPref = MainMenu.Instance.getSharedPreferences(SHARED_PREF_ID,0);

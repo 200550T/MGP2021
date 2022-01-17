@@ -80,7 +80,6 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {  
         if (v == btn_highscore)
         {
             intent.setClass(this, HighscorePage.class);
-            StateManager.Instance.ChangeState("HighscorePage");
         }
 
         else if (v == btn_exit)

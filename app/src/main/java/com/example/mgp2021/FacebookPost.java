@@ -42,7 +42,7 @@ public class FacebookPost extends Activity implements View.OnClickListener, Stat
     //Define buttons
     private Button btn_exitshare;
     private Button btn_sharemyscore;
-    private Button btn_fbLogin;
+    private LoginButton btn_fbLogin;
     private LoginManager loginManager = null;
     private CallbackManager callbackManager = null;
     private static final String EMAIL = "email";
@@ -61,7 +61,7 @@ public class FacebookPost extends Activity implements View.OnClickListener, Stat
         highscore = GameSystem.Instance.GetIntFromSave("Highscore");
 
         FacebookSdk.setApplicationId("1604223473292246");
-        FacebookSdk.isInitialized();
+        FacebookSdk.sdkInitialize(getApplicationContext());
         if(BuildConfig.DEBUG){
             FacebookSdk.setIsDebugEnabled(true);
             FacebookSdk.addLoggingBehavior(LoggingBehavior.INCLUDE_ACCESS_TOKENS);
@@ -79,6 +79,7 @@ public class FacebookPost extends Activity implements View.OnClickListener, Stat
         btn_exitshare.setOnClickListener(this);
 
         btn_fbLogin = (LoginButton) findViewById(R.id.fb_login_button);
+        btn_fbLogin.setReadPermissions(Arrays.asList(EMAIL));
         LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email"));
 
         btn_sharemyscore= (Button)findViewById(R.id.btn_sharemyscore);
@@ -135,8 +136,8 @@ public class FacebookPost extends Activity implements View.OnClickListener, Stat
         if (v == btn_exitshare)
         {
             intent.setClass(this, HighscorePage.class);
+            startActivity(intent);
         }
-        startActivity(intent);
     }
 
     @Override

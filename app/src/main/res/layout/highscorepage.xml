@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:background="@drawable/blankbg">
+    android:background="@drawable/highscore">
 
     <Button
         android:id="@+id/btn_back"
@@ -18,13 +18,14 @@
         android:textColor="#bdfcf2"
         android:textSize="18dp" />
 
+
     <Button
         android:id="@+id/btn_sharehighscore"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="343dp"
+        android:layout_marginTop="404dp"
         android:layout_marginRight="131dp"
         android:background="@drawable/button"
         android:text="Share"
@@ -32,23 +33,13 @@
         android:textSize="18dp" />
 
     <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:text="HIGHSCORE"
-        android:textSize="50dp"
-        android:textColor="@color/white"
-        android:layout_alignLeft="@id/btn_back"/>
-
-    <TextView
         android:id="@+id/scoreText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/btn_back"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="200dp"
-        android:text="highscoretxt"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="300dp"
+        android:text="0"
         android:textAlignment="textStart"
         android:textColor="@color/white"
         android:textSize="50dp" />

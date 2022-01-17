@@ -37,7 +37,7 @@ public class HighscorePage extends Activity implements OnClickListener, StateBas
 
         TextView scoreText;
         scoreText = (TextView)findViewById(R.id.scoreText);
-        scoreText.setText(String.format("Highscore:%d", GameSystem.Instance.GetIntFromSave("Highscore")));
+        scoreText.setText(String.format("%d", GameSystem.Instance.GetIntFromSave("Highscore")));
 
         //String.format("Highscore:%d", GameSystem.Instance.GetIntFromSave("Highscore"))
 

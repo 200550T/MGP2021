@@ -28,18 +28,18 @@ public class UpdateThread extends Thread {
         // Manage your managers if there is any
 /*        ResourceManager.Instance.Init(_view);*/
         EntityManager.Instance.Init(_view);
-/*        GameSystem.Instance.Init(_view);
+       // GameSystem.Instance.Init(_view);
         StateManager.Instance.Init(_view);
-        AudioManager.Instance.Init(_view);*/
+        //AudioManager.Instance.Init(_view);
 
         if(audioManager == null){
             audioManager = AudioManager.Instance;
             audioManager.Init(_view);
         }
-        if(stateManager == null){
+/*        if(stateManager == null){
             stateManager = StateManager.Instance;
             stateManager.Init(_view);
-        }
+        }*/
         if(gameSystem == null){
             gameSystem = GameSystem.Instance;
             gameSystem.Init(_view);

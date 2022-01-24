@@ -18,7 +18,8 @@ public class GameOverDialog extends DialogFragment{
         builder.setMessage("Your score was: " + RenderTextEntity.score + "!")
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        StateManager.Instance.ChangeState("Mainmenu");
+                        //StateManager.Instance.ChangeState("Mainmenu");
+                        GamePage.Instance.ChangeToMenu();
                         IsShown = false;
                     }
                 });

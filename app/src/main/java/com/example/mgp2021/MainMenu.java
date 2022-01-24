@@ -70,7 +70,7 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {  
         {
             // intent --> to set to another class which another page or screen that we are launching.
             intent.setClass(this, GamePage.class);
- 				 //StateManager.Instance.ChangeState("MainGame"); // Default is like a loading page
+ 				// StateManager.Instance.ChangeState("MainGame"); // Default is like a loading page
             GameSystem.Instance.SetIsPaused(false);
 
             RenderTextEntity.score = 0;
@@ -103,6 +103,7 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {  
 	
     @Override
     public void OnEnter(SurfaceView _view) {
+        AudioManager.Instance.StopAudio(R.raw.bgm);
     }
 	
     @Override

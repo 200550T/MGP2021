@@ -10,9 +10,13 @@ import android.view.SurfaceView;
 // Created by TanSiewLan2021
 
 public class MainGameSceneState implements StateBase {
-    private float timer = 0.0f;
+    private float virustimer = 0.0f;
     private float BulletTimer = 0.0f;
+    private float blocktimer = 0.0f;
+    private float wormtimer = 0.0f;
     public float Firerate = 0.05f;
+    public boolean EnemyShoot = false;
+    public float enemyShootTimer = 0.0f;
     public int PlayerLevel = 0;
     private GamePage activity = null;
     public static MainGameSceneState Instance = null;
@@ -32,7 +36,7 @@ public class MainGameSceneState implements StateBase {
         DraggablePlayer.Create();
         //Powerup.Create();
         PauseButtonEntity.Create();
-        AudioManager.Instance.PlayAudio(R.raw.bgm,100);
+        AudioManager.Instance.PlayAudio(R.raw.bgm,500);
     }
 
     @Override
@@ -59,12 +63,37 @@ public class MainGameSceneState implements StateBase {
                 BulletTimer = 0;
             }
 
-            timer += 1 * _dt;
-            if(timer >= 1.2)
+            virustimer += 1 * _dt;
+            if(virustimer >= 1.2)
             {
                 E_virus.Create();
-                timer = 0;
+                virustimer = 0;
             }
+
+            blocktimer += 1 * _dt;
+            if(blocktimer >= 1.7)
+            {
+                E_block.Create();
+                blocktimer = 0;
+            }
+
+            wormtimer += 1 * _dt;
+            if(wormtimer >= 2.3)
+            {
+                E_Worm.Create();
+                wormtimer = 0;
+            }
+
+            if(EnemyShoot == true)
+            {
+                enemyShootTimer += 1 * _dt;
+                if(enemyShootTimer >= 1.5)
+                {
+                    EnemyBullet.Create();
+                    enemyShootTimer = 0;
+                }
+            }
+
         }
 
         EntityManager.Instance.Update(_dt);

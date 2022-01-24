@@ -78,10 +78,6 @@ public class PauseButtonEntity implements EntityBase{
                     newPauseConfirm.show(GamePage.Instance.getFragmentManager(), "PauseConfirm");
                     // END OF NEW PAUSE BUTTON FUNCTIONALITY
 
-
-                    //AudioManager.Instance.StopAudio(R.raw.bgm);
-                    RenderTextEntity.score = 0;
-                    RenderTextEntity.lives = 3;
                 }
                 buttonDelay = 0;
                 //StateManager.Instance.ChangeState("Mainmenu");

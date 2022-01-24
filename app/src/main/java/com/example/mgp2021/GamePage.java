@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.Window;
 import android.view.WindowManager;
+import android.content.Intent;
 
 public class GamePage extends Activity {
 
@@ -28,6 +29,13 @@ public class GamePage extends Activity {
         setContentView(new GameView(this)); // Surfaceview = GameView
     }
 
+    public void ChangeToMenu()
+    {
+        Intent intent = new Intent();
+        intent.setClass(this, MainMenu.class);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event)
     {
@@ -40,9 +48,9 @@ public class GamePage extends Activity {
         return true;
     }
 
-    public void CreateBullet()
+    /*public void CreateBullet()
     {
-        Bullet.Create();
-    }
+        Bullet.Create(0);
+    }*/
 }
 

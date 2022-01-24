@@ -12,6 +12,7 @@ public class E_virus implements EntityBase, Collidable{
     private Sprite virusSprite = null;
     public static E_virus Instance = null;
     private float imgRadius = 0.0f;
+    private float shootTimer = 0.0f;
 
     Random ranGen = new Random(); //wk 8=>Random Generator
 
@@ -75,6 +76,18 @@ public class E_virus implements EntityBase, Collidable{
         if(GameSystem.Instance.GetIsPaused()){return;}
         yPos += _dt * 300.f;
         virusSprite.Update(_dt);
+
+        //shoot if not dead
+//        if(!isDone)
+//        {
+//            shootTimer +=_dt;
+//            if(shootTimer >= 1.4)
+//            {
+//                EnemyBullet.Create();
+//                shootTimer = 0;
+//            }
+//        }
+
     }
 
     @Override

@@ -53,6 +53,7 @@ public class MainGameSceneState implements StateBase {
         RenderBackground.Create();
         RenderTextEntity.Create();
         DraggablePlayer.Create();
+        HealthBar.Create();
         PauseButtonEntity.Create();
 
         //play bgm

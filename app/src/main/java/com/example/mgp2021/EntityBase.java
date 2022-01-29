@@ -14,6 +14,7 @@ public interface EntityBase
          ENT_PAUSE,
          ENT_ENEMY,
          ENT_POWERUP,
+         ENT_HEALTHBAR,
          ENT_DEFAULT,
     }
 

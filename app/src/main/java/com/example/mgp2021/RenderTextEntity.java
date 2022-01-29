@@ -63,10 +63,10 @@ public class RenderTextEntity implements EntityBase{
     @Override
     public void Render(Canvas _canvas) {
         Paint paint = new Paint();
-        paint. setARGB(255, 255,255,255);
+        paint. setARGB(255, 255,255,0);
         paint.setStrokeWidth(200);
         paint.setTypeface(myfont);
-        paint.setTextSize(70);
+        paint.setTextSize(90);
 
         Paint paint2 = new Paint();
         paint2. setARGB(255, 255,0,0);
@@ -76,9 +76,9 @@ public class RenderTextEntity implements EntityBase{
 
         //_canvas.drawText("FPS: " + FPS, 30,80,paint); //for now, default number but can use _view.getwidth/ ?
 
-        _canvas.drawText("Score: " + score, 30,80,paint); //for now, default number but can use _view.getwidth/ ?
+        _canvas.drawText("Score: " + score, 30,310,paint); //for now, default number but can use _view.getwidth/ ?
 
-        _canvas.drawText("Lives: " + lives, 30,150,paint); //for now, default number but can use _view.getwidth/ ?
+        //_canvas.drawText("Lives: " + lives, 30,300,paint); //for now, default number but can use _view.getwidth/ ?
 
     }
 

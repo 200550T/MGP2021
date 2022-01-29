@@ -47,12 +47,6 @@ public class E_virus implements EntityBase, Collidable{
             this.SetIsDone(true);
             AudioManager.Instance.PlayAudio(R.raw.hit, 100);
             RenderTextEntity.score += 1;
-
-            /*int currScore = GameSystem.Instance.GetIntFromSave("Highscore");
-            currScore++;
-            GameSystem.Instance.SaveEditBegin();
-            GameSystem.Instance.SetIntInSave("Highscore", currScore);
-            GameSystem.Instance.SaveEditEnd();*/
         }
     }
 
@@ -76,18 +70,6 @@ public class E_virus implements EntityBase, Collidable{
         if(GameSystem.Instance.GetIsPaused()){return;}
         yPos += _dt * 300.f;
         virusSprite.Update(_dt);
-
-        //shoot if not dead
-//        if(!isDone)
-//        {
-//            shootTimer +=_dt;
-//            if(shootTimer >= 1.4)
-//            {
-//                EnemyBullet.Create();
-//                shootTimer = 0;
-//            }
-//        }
-
     }
 
     @Override

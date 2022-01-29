@@ -12,12 +12,25 @@ public class GameView extends SurfaceView {
     private SurfaceHolder holder = null;
 
     //Thread to be known for its existence
-    private UpdateThread updateThread = new UpdateThread(this);
+    private static UpdateThread updateThread = null;
 
     public GameView(Context _context)
     {
         super(_context);
         holder = getHolder();
+
+        if(updateThread == null)
+        {
+            updateThread = new UpdateThread(this);
+
+            if (!updateThread.IsRunning())
+                updateThread.Initialize();
+
+            if (!updateThread.isAlive())
+                updateThread.start();
+        }
+
+        updateThread.reInit(this);
 
         if (holder != null)
         {
@@ -25,11 +38,11 @@ public class GameView extends SurfaceView {
                 @Override
                 public void surfaceCreated(SurfaceHolder holder) {
                     //Setup some stuff to indicate whether thread is running and initialized
-                    if (!updateThread.IsRunning())
+                    /*if (!updateThread.IsRunning())
                         updateThread.Initialize();
 
                     if (!updateThread.isAlive())
-                        updateThread.start();
+                        updateThread.start();*/
                 }
 
                 @Override
@@ -40,7 +53,7 @@ public class GameView extends SurfaceView {
                 @Override
                 public void surfaceDestroyed(SurfaceHolder holder) {
                     // Done then thread should not run too.
-                    updateThread.Terminate();
+                    //updateThread.Terminate();
                 }
             });
         }

@@ -74,11 +74,11 @@ public class RenderTextEntity implements EntityBase{
         paint2.setTypeface(myfont);
         paint2.setTextSize(70);
 
-        _canvas.drawText("FPS: " + FPS, 30,80,paint); //for now, default number but can use _view.getwidth/ ?
+        //_canvas.drawText("FPS: " + FPS, 30,80,paint); //for now, default number but can use _view.getwidth/ ?
 
-        _canvas.drawText("Score: " + score, 30,150,paint); //for now, default number but can use _view.getwidth/ ?
+        _canvas.drawText("Score: " + score, 30,80,paint); //for now, default number but can use _view.getwidth/ ?
 
-        _canvas.drawText("Lives: " + lives, 30,220,paint); //for now, default number but can use _view.getwidth/ ?
+        _canvas.drawText("Lives: " + lives, 30,150,paint); //for now, default number but can use _view.getwidth/ ?
 
     }
 

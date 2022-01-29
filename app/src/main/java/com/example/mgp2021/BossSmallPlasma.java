@@ -1,16 +1,13 @@
 package com.example.mgp2021;
 
-import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.util.Log;
 import android.view.SurfaceView;
 
-public class EnemyBullet implements EntityBase, Collidable{
+public class BossSmallPlasma  implements EntityBase, Collidable{
     private boolean isDone = false;
-    private Bitmap enemyBullet = null;
+    private Bitmap bossPlasma = null;
     private float xPos, yPos, yLimit;
     private float imgRadius = 0.0f;
     private SurfaceView view = null;
@@ -27,7 +24,7 @@ public class EnemyBullet implements EntityBase, Collidable{
 
 
     @Override
-    public String GetType(){return "EnemyBullet";}
+    public String GetType(){return "BossPlasma";}
     @Override
     public float GetPosX(){return xPos;}
     @Override
@@ -47,11 +44,10 @@ public class EnemyBullet implements EntityBase, Collidable{
     @Override
     public void Init(SurfaceView _view) {
         //setting up values
-        xPos = E_Worm.Instance.GetPosX() - 20.f;
-        yPos = E_Worm.Instance.GetPosY() - 60.f;
+        xPos = E_VirusBoss.Instance.GetPosX() - 20.f;
+        yPos = E_VirusBoss.Instance.GetPosY() - 60.f;
         yLimit = _view.getHeight() * 0.99f;
-        enemyBullet = BitmapFactory.decodeResource(_view.getResources(), R.drawable.enemybullet);
-        //AudioManager.Instance.PlayAudio(R.raw.shoot,100);
+        bossPlasma = BitmapFactory.decodeResource(_view.getResources(), R.drawable.plasma2);
     }
 
     @Override
@@ -65,12 +61,12 @@ public class EnemyBullet implements EntityBase, Collidable{
 
     @Override
     public void Render(Canvas _canvas) {
-            _canvas.drawBitmap(enemyBullet,xPos,yPos, null);
+        _canvas.drawBitmap(bossPlasma,xPos,yPos, null);
     }
 
     @Override
     public boolean IsInit() {
-        return enemyBullet != null;
+        return bossPlasma != null;
     }
 
     @Override
@@ -87,8 +83,8 @@ public class EnemyBullet implements EntityBase, Collidable{
         return ENTITY_TYPE.ENT_BULLET;
     }
 
-    public static EnemyBullet Create() {
-        EnemyBullet result = new EnemyBullet();
+    public static BossSmallPlasma Create() {
+        BossSmallPlasma result = new BossSmallPlasma();
         EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_BULLET);
         return result;
     }

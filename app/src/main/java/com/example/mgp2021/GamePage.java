@@ -31,9 +31,10 @@ public class GamePage extends Activity {
 
     public void ChangeToMenu()
     {
-        Intent intent = new Intent();
+        /*Intent intent = new Intent();
         intent.setClass(this, MainMenu.class);
-        startActivity(intent);
+        startActivity(intent);*/
+        finish();
     }
 
     @Override

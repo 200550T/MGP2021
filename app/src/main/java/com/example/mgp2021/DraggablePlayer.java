@@ -14,7 +14,7 @@ public class DraggablePlayer implements EntityBase, Collidable{
     public static DraggablePlayer Instance = null;
     private float imgRadius = 0.0f;
 
-    private int currLvl = 0;
+    public static int currLvl = 0;
     public int GetCurrLevel() {return currLvl;}
     public void SetCurrLevel(int newLevel) {currLvl = newLevel;}
     public void IncreaseLevel() {currLvl += 1;}
@@ -44,13 +44,27 @@ public class DraggablePlayer implements EntityBase, Collidable{
     public void OnHit(Collidable _other){
         if(_other.GetType() == "Enemy")
         {
+            currLvl = 0;
             RenderTextEntity.lives -= 1;
+            startVibrate();
+        }
+        else if (_other.GetType() == "EnemyBullet")
+        {
+            currLvl = 0;
+            RenderTextEntity.lives -= 1;
+            startVibrate();
+        }
+        else if (_other.GetType() == "BossPlasma")
+        {
+            currLvl = 0;
+            RenderTextEntity.lives -= 3;
             startVibrate();
         }
     }
 
     @Override
     public void Init(SurfaceView _view) {
+        currLvl = 0;
         playerSprite = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.player2),1,1, 8 );
         xPos = _view.getWidth() * 0.5f;
         yPos = _view.getHeight() * 0.85f;
@@ -61,7 +75,7 @@ public class DraggablePlayer implements EntityBase, Collidable{
     public void startVibrate(){
         if(Build.VERSION.SDK_INT >= 26)
         {
-            _vibrator.vibrate(VibrationEffect.createOneShot(150, 10));
+            _vibrator.vibrate(VibrationEffect.createOneShot(100, 100));
         }
         else{
             long pattern[] = {0,50,0};
@@ -116,17 +130,24 @@ public class DraggablePlayer implements EntityBase, Collidable{
         //powerup
         if(currLvl == 0)
         {
-            MainGameSceneState.Instance.Firerate = 0.5f;
+            MainGameSceneState.Instance.TimeToSpawnPW = 10.0f;
+            MainGameSceneState.Instance.Firerate = 0.9f;
         }
         else if(currLvl == 1)
         {
+            MainGameSceneState.Instance.TimeToSpawnPW = 20.0f;
+            MainGameSceneState.Instance.Firerate = 0.7f;
+        }
+        else if(currLvl == 2)
+        {
+            MainGameSceneState.Instance.TimeToSpawnPW = 35.0f;
+            MainGameSceneState.Instance.Firerate = 0.5f;
+        }
+        else if(currLvl == 3)
+        {
+            MainGameSceneState.Instance.TimeToSpawnPW = 45.0f;
             MainGameSceneState.Instance.Firerate = 0.3f;
         }
-/*        else if(currLvl == 2)
-        {
-            MainGameSceneState.Instance.Firerate = 0.5f;
-            MainGameSceneState.Instance.PlayerLevel = 2;
-        }*/
     }
 
     @Override

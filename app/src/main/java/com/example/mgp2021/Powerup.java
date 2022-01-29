@@ -55,14 +55,15 @@ public class Powerup implements EntityBase, Collidable{
 
         yPos = _view.getHeight() * 0.05f;
         //xPos = ranGen.nextInt((max - min) + 1) + min;
-        xPos = _view.getWidth() * 0.5f;
-        //xPos = ranGen.nextFloat() * _view.getWidth();
+        //xPos = _view.getWidth() * 0.5f;
+        xPos = ranGen.nextFloat() * _view.getWidth();
         Instance = this;
     }
 
     @Override
     public void Update(float _dt) {
-        yPos += _dt * 150.f;
+        if(GameSystem.Instance.GetIsPaused()){return;}
+        yPos += _dt * 310.f;
         imgRadius = Powerup.GetWidth() * 0.5f;
         Powerup.Update(_dt);
     }

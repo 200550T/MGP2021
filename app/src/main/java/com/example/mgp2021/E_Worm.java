@@ -11,6 +11,10 @@ public class E_Worm implements EntityBase, Collidable{
     private Sprite wormSprite = null;
     public static E_Worm Instance = null;
     private float imgRadius = 0.0f;
+    //public static boolean isHit = false;
+
+
+    private float enemyShootTimer = 0.0f;
 
     Random ranGen = new Random(); //wk 8=>Random Generator
 
@@ -39,9 +43,11 @@ public class E_Worm implements EntityBase, Collidable{
         if(_other.GetType() == "Player")
         {
             this.SetIsDone(true);
+            MainGameSceneState.Instance.EnemyShoot = false;
         }
         else if (_other.GetType() == "Bullet")
         {
+            MainGameSceneState.Instance.EnemyShoot = false;
             this.SetIsDone(true);
             AudioManager.Instance.PlayAudio(R.raw.hit, 100);
             RenderTextEntity.score += 1;
@@ -50,6 +56,7 @@ public class E_Worm implements EntityBase, Collidable{
 
     @Override
     public void Init(SurfaceView _view) {
+        MainGameSceneState.Instance.EnemyShoot = true;
         wormSprite = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.worm),1,1, 1 );
         imgRadius = wormSprite.GetWidth() * 0.5f;
 
@@ -67,12 +74,6 @@ public class E_Worm implements EntityBase, Collidable{
         if(GameSystem.Instance.GetIsPaused()){return;}
         yPos += _dt * 290.f;
         wormSprite.Update(_dt);
-
-
-        if(!isDone)
-        {
-                MainGameSceneState.Instance.EnemyShoot = true;
-        }
     }
 
     @Override

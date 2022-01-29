@@ -20,6 +20,13 @@ public class UpdateThread extends Thread {
     private static GameSystem gameSystem = null;
     private static AudioManager audioManager = null;
 
+    public void reInit(GameView _view)
+    {
+        holder = _view.getHolder();
+        EntityManager.Instance.Init(_view);
+        StateManager.Instance.Init(_view);
+    }
+
     public UpdateThread(GameView _view)
     {
         view = _view;
@@ -75,7 +82,7 @@ public class UpdateThread extends Thread {
         // This is to calculate delta time (more precise)
         long prevTime = System.nanoTime();
 
-        StateManager.Instance.Start("MainGame");  // To edit to whichever state to start with.
+        StateManager.Instance.Start("Mainmenu");  // To edit to whichever state to start with.
 
         // This is the game loop
         while (isRunning && StateManager.Instance.GetCurrentState() != "INVALID")

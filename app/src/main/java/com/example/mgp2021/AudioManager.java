@@ -29,9 +29,9 @@ public class AudioManager {
         {
             //have the clip
             MediaPlayer curr = audioMap.get(_id);
+            curr.start();
             curr.seekTo(0);
             curr.setVolume(_volume, _volume);
-            curr.start();
         }
         else
         {

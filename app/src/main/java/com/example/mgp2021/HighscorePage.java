@@ -23,7 +23,7 @@ public class HighscorePage extends Activity implements OnClickListener, StateBas
     //Define buttons
     private Button btn_back;
     private Button btn_sharehighscore;
-    //public static HighscorePage Instance = null;
+    public static HighscorePage Instance = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class HighscorePage extends Activity implements OnClickListener, StateBas
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        //Instance = this;
+        Instance = this;
         setContentView(R.layout.highscorepage);
 
         TextView scoreText;

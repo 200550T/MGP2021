@@ -52,7 +52,6 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {  
 
         btn_exit = (Button)findViewById(R.id.btn_exit);
         btn_exit.setOnClickListener(this); //Set Listener to this button --> Back Button
-
         StateManager.Instance.AddState(new MainMenu());
     }
 
@@ -68,17 +67,24 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {  
 
         if (v == btn_start)
         {
+            //set stage
+            MainGameSceneState.StageNo = 1;
+
             // intent --> to set to another class which another page or screen that we are launching.
             intent.setClass(this, GamePage.class);
- 				// StateManager.Instance.ChangeState("MainGame"); // Default is like a loading page
+            StateManager.Instance.ChangeState("MainGame"); // Default is like a loading page
             GameSystem.Instance.SetIsPaused(false);
 
+            //init variables
             RenderTextEntity.score = 0;
             RenderTextEntity.lives = 3;
+            DraggablePlayer.currLvl = 0;
+            //MainGameSceneState.StartGame = true;
         }
 
         if (v == btn_highscore)
         {
+            //StateManager.Instance.ChangeState("HighscorePage");
             intent.setClass(this, HighscorePage.class);
         }
 
@@ -103,7 +109,7 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {  
 	
     @Override
     public void OnEnter(SurfaceView _view) {
-        AudioManager.Instance.StopAudio(R.raw.bgm);
+
     }
 	
     @Override

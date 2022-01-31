@@ -84,7 +84,7 @@ public class DraggablePlayer implements EntityBase, Collidable{
     public void startVibrate(){
         if(Build.VERSION.SDK_INT >= 26)
         {
-            _vibrator.vibrate(VibrationEffect.createOneShot(350, 50));
+            _vibrator.vibrate(VibrationEffect.createOneShot(150, 50));
         }
         else{
             long pattern[] = {0,50,0};
@@ -124,7 +124,6 @@ public class DraggablePlayer implements EntityBase, Collidable{
             }
 
         }
-
 
         //if no lives left trigger gameover
         if (RenderTextEntity.lives <= 0)

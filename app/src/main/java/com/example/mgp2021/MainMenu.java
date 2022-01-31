@@ -90,7 +90,8 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {  
 
         else if (v == btn_exit)
         {
-            intent.setClass(this, MainMenu.class);
+            //intent.setClass(this, MainMenu.class);
+            System.exit(0);
             exit_check = true;
 
   /*         if (ExitConfirmDialog.IsShown)

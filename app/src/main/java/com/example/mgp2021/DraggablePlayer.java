@@ -13,6 +13,7 @@ public class DraggablePlayer implements EntityBase, Collidable{
     private Sprite playerSprite = null;
     public static DraggablePlayer Instance = null;
     private float imgRadius = 0.0f;
+    public int triesCount = 10;
 
     public static int currLvl = 0;
     public int GetCurrLevel() {return currLvl;}
@@ -50,18 +51,21 @@ public class DraggablePlayer implements EntityBase, Collidable{
             currLvl = 0;
             RenderTextEntity.lives -= 1;
             startVibrate();
+            triesCount -= 1;
         }
         else if (_other.GetType() == "EnemyBullet")
         {
             currLvl = 0;
             RenderTextEntity.lives -= 1;
             startVibrate();
+            triesCount -= 1;
         }
         else if (_other.GetType() == "BossPlasma")
         {
             currLvl = 0;
             RenderTextEntity.lives -= 3;
             startVibrate();
+            triesCount -= 1;
         }
     }
 
@@ -80,7 +84,7 @@ public class DraggablePlayer implements EntityBase, Collidable{
     public void startVibrate(){
         if(Build.VERSION.SDK_INT >= 26)
         {
-            _vibrator.vibrate(VibrationEffect.createOneShot(50, 100));
+            _vibrator.vibrate(VibrationEffect.createOneShot(350, 50));
         }
         else{
             long pattern[] = {0,50,0};

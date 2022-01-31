@@ -84,7 +84,7 @@ public class DraggablePlayer implements EntityBase, Collidable{
     public void startVibrate(){
         if(Build.VERSION.SDK_INT >= 26)
         {
-            _vibrator.vibrate(VibrationEffect.createOneShot(100, 200));
+            _vibrator.vibrate(VibrationEffect.createOneShot(100, 250));
         }
         else{
             long pattern[] = {0,50,0};

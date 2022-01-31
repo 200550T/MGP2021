@@ -109,7 +109,8 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {  
 	
     @Override
     public void OnEnter(SurfaceView _view) {
-
+        AudioManager.Instance.MuteAudio(R.raw.bgm);
+        AudioManager.Instance.PlayAudio(R.raw.air,1);
     }
 	
     @Override

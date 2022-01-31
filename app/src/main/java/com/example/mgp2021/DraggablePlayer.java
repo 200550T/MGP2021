@@ -20,6 +20,9 @@ public class DraggablePlayer implements EntityBase, Collidable{
     public void IncreaseLevel() {currLvl += 1;}
     private Vibrator _vibrator;
 
+    private float xLimit = 0.0f;
+    private float xLimit1 = 0.0f;
+
     @Override
     public boolean IsDone() {
         return isDone;
@@ -65,6 +68,8 @@ public class DraggablePlayer implements EntityBase, Collidable{
     @Override
     public void Init(SurfaceView _view) {
         currLvl = 0;
+        xLimit = _view.getWidth() * 0.9f;
+        xLimit1 = _view.getWidth() * 0.1f;
         playerSprite = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.player2),1,1, 8 );
         xPos = _view.getWidth() * 0.5f;
         yPos = _view.getHeight() * 0.85f;
@@ -75,7 +80,7 @@ public class DraggablePlayer implements EntityBase, Collidable{
     public void startVibrate(){
         if(Build.VERSION.SDK_INT >= 26)
         {
-            _vibrator.vibrate(VibrationEffect.createOneShot(100, 100));
+            _vibrator.vibrate(VibrationEffect.createOneShot(50, 100));
         }
         else{
             long pattern[] = {0,50,0};
@@ -98,10 +103,24 @@ public class DraggablePlayer implements EntityBase, Collidable{
         {
             // Check collision with the player
             imgRadius = playerSprite.GetWidth() * 0.5f;
-            if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius)) {
-                xPos = TouchManager.Instance.GetPosX();
+            if(xPos <= xLimit && xPos >= xLimit1)
+            {
+                if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius))
+                {
+                    xPos = TouchManager.Instance.GetPosX();
+                }
             }
+            if (xPos >= xLimit)
+            {
+                xPos = xLimit;
+            }
+            if (xPos <= xLimit1)
+            {
+                xPos = xLimit1;
+            }
+
         }
+
 
         //if no lives left trigger gameover
         if (RenderTextEntity.lives <= 0)

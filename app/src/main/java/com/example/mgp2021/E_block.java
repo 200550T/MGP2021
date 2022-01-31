@@ -48,11 +48,11 @@ public class E_block implements EntityBase, Collidable{
         imgRadius = blockSprite.GetWidth() * 0.5f;
 
         //randomise position
-        int min = (int) (_view.getWidth() * 0.2);
-        int max = (int) (_view.getWidth() * 0.8);
+        float min = 0.1f;
+        float max = 0.9f;
 
         yPos = _view.getHeight() * 0.05f;
-        xPos = ranGen.nextFloat() * _view.getWidth();
+        xPos = (min + ranGen.nextFloat() * (max - min)) * _view.getWidth();
         Instance = this;
     }
 

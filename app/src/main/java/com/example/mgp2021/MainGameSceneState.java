@@ -56,6 +56,7 @@ public class MainGameSceneState implements StateBase {
         HealthBar.Create();
         PauseButtonEntity.Create();
 
+        AudioManager.Instance.MuteAudio(R.raw.air);
         //play bgm
         AudioManager.Instance.PlayAudio(R.raw.bgm,1);
 

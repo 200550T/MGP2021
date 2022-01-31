@@ -61,18 +61,19 @@ public class E_Worm implements EntityBase, Collidable{
         imgRadius = wormSprite.GetWidth() * 0.5f;
 
         //randomise position
-        int min = (int) (_view.getWidth() * 0.2);
-        int max = (int) (_view.getWidth() * 0.8);
+        float min = 0.1f;
+        float max = 0.9f;
 
         yPos = _view.getHeight() * 0.05f;
-        xPos = ranGen.nextFloat() * _view.getWidth();
+        //xPos = ranGen.nextFloat() * _view.getWidth();
+        xPos = (min + ranGen.nextFloat() * (max - min)) * _view.getWidth();
         Instance = this;
     }
 
     @Override
     public void Update(float _dt) {
         if(GameSystem.Instance.GetIsPaused()){return;}
-        yPos += _dt * 290.f;
+        yPos += _dt * 280.f;
         wormSprite.Update(_dt);
     }
 

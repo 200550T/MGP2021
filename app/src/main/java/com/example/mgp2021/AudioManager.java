@@ -41,6 +41,18 @@ public class AudioManager {
         }
     }
 
+    public void MuteAudio(int _id)
+    {
+        if(audioMap.containsKey(_id))
+        {
+            //have the clip
+            MediaPlayer curr = audioMap.get(_id);
+            //curr.seekTo(0);
+            curr.setVolume(0, 0);
+        }
+    }
+
+
     public void StopAudio(int _id)
     {
         MediaPlayer curr = audioMap.get(_id);

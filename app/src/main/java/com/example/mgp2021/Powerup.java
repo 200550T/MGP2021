@@ -50,13 +50,15 @@ public class Powerup implements EntityBase, Collidable{
         Powerup = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.powerup01_2),3,2, 10 );
 
         //randomise position
-        int min = (int) (_view.getWidth() * 0.2);
-        int max = (int) (_view.getWidth() * 0.8);
+        float min = 0.1f;
+        float max = 0.9f;
 
         yPos = _view.getHeight() * 0.05f;
         //xPos = ranGen.nextInt((max - min) + 1) + min;
         //xPos = _view.getWidth() * 0.5f;
-        xPos = ranGen.nextFloat() * _view.getWidth();
+        //xPos = ranGen.nextFloat() * _view.getWidth();
+        xPos = (min + ranGen.nextFloat() * (max - min)) * _view.getWidth();
+
         Instance = this;
     }
 
